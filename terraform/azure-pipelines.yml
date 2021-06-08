@@ -12,7 +12,7 @@ stages:
   - job: Validate
     continueOnError: false
     steps:
-    - publish: 1-terraform
+    - publish: terraform
       artifact: terraform_out
     - task: charleszipp.azure-pipelines-tasks-terraform.azure-pipelines-tasks-terraform-installer.TerraformInstaller@0
       displayName: 'Use Terraform v0.12.6'
@@ -22,18 +22,18 @@ stages:
       displayName: 'terraform init'
       inputs:
         command: init
-        workingDirectory: 1-terraform
+        workingDirectory: terraform
         backendType: azurerm
         backendServiceArm: 'Azure SPN'
-        backendAzureRmResourceGroupName: 'AKSTerraform-RG'
-        backendAzureRmStorageAccountName: 'nyuenterraformstate'
+        backendAzureRmResourceGroupName: 'RG-AksTerraform'
+        backendAzureRmStorageAccountName: 'saweuterraform2553'
         backendAzureRmContainerName: 'tfstate'
         backendAzureRmKey: 'demo.terraform.tfstate'
     - task: charleszipp.azure-pipelines-tasks-terraform.azure-pipelines-tasks-terraform-cli.TerraformCLI@0
       displayName: 'terraform validate'
       inputs:
         command: validate
-        workingDirectory: 1-terraform
+        workingDirectory: terraform
  
 
 - stage: Deploy
@@ -58,8 +58,8 @@ stages:
               workingDirectory: $(Pipeline.Workspace)/terraform_out
               backendType: azurerm
               backendServiceArm: 'Azure SPN'
-              backendAzureRmResourceGroupName: 'AKSTerraform-RG'
-              backendAzureRmStorageAccountName: 'nyuenterraformstate'
+              backendAzureRmResourceGroupName: 'RG-AksTerraform'
+              backendAzureRmStorageAccountName: 'saweuterraform2553'
               backendAzureRmContainerName: 'tfstate'
               backendAzureRmKey: 'demo.terraform.tfstate'
           - task: charleszipp.azure-pipelines-tasks-terraform.azure-pipelines-tasks-terraform-cli.TerraformCLI@0
