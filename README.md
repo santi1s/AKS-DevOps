@@ -1,2 +1,2 @@
-# AKS-Articles
-Code base related to the AKS + Azure DevOps Medium articles
+# AKS-DevOPs
+Setup Terraform to be used by Azure DevOps pipeline to deploy AKS cluster
