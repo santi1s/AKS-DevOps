@@ -51,6 +51,10 @@ stages:
           steps:
           # - download: current
           #   artifact: terraform_out
+          - task: charleszipp.azure-pipelines-tasks-terraform.azure-pipelines-tasks-terraform-installer.TerraformInstaller@0
+            displayName: 'Use Terraform v0.15.5'
+            inputs:
+              terraformVersion: 0.15.5
           - task: charleszipp.azure-pipelines-tasks-terraform.azure-pipelines-tasks-terraform-cli.TerraformCLI@0
             displayName: 'terraform init'
             inputs:
