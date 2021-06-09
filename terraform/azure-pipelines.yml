@@ -10,6 +10,7 @@ stages:
 - stage: Validate
   jobs:
   - job: Validate
+    pool: self-hosted-pool
     continueOnError: false
     steps:
     - publish: terraform
@@ -40,8 +41,7 @@ stages:
   jobs:
     # track deployments on the environment
   - deployment: Deploy_Terraform
-    pool:
-      vmImage: 'ubuntu-latest'
+    pool: self-hosted-pool
     # creates an environment if it doesn’t exist
     environment: 'DEV'
     strategy:
