@@ -16,9 +16,9 @@ stages:
     - publish: terraform
       artifact: terraform_out
     - task: charleszipp.azure-pipelines-tasks-terraform.azure-pipelines-tasks-terraform-installer.TerraformInstaller@0
-      displayName: 'Use Terraform v0.12.6'
+      displayName: 'Use Terraform v0.15.5'
       inputs:
-        terraformVersion: 0.12.6
+        terraformVersion: 0.15.5
     - task: charleszipp.azure-pipelines-tasks-terraform.azure-pipelines-tasks-terraform-cli.TerraformCLI@0
       displayName: 'terraform init'
       inputs:
@@ -70,7 +70,7 @@ stages:
               environmentServiceName: 'Azure SPN'
               secureVarsFile: 'aks_conf.tfvars'
               commandOptions: '-out $(Pipeline.Workspace)/terraform_out/terraform_aks_out'
-              terraformVersion: 0.12.6
+              terraformVersion: 0.15.5
           - task: charleszipp.azure-pipelines-tasks-terraform.azure-pipelines-tasks-terraform-cli.TerraformCLI@0
             displayName: 'terraform apply'
             inputs:
@@ -78,5 +78,5 @@ stages:
               workingDirectory: $(Pipeline.Workspace)/terraform_out
               environmentServiceName: 'Azure SPN'
               commandOptions: '$(Pipeline.Workspace)/terraform_out/terraform_aks_out'
-              terraformVersion: 0.12.6
+              terraformVersion: 0.15.5
             
